@@ -1,70 +1,38 @@
 ## usersテーブル
 
-| Column                      | Type       | Options                        |
-|-----------------------------|------------|--------------------------------|
-| nickname                    | string     | null: false                    |
-| e_mail                      | string     | null: false                    |
-| password                    | string     | null: false                    |
-| password_confirmation       | string     | null: false                    |
-| full_width_family_name      | string     | null: false                    |
-| full_width_name             | string     | null: false                    |
-| full_width_kana_family_name | string     | null: false                    |
-| full_width_kana_name        | string     | null: false                    |
-| birthday_year_id            | references | null: false, foreign_key: true |
-| birthday_month_id           | references | null: false, foreign_key: true |
-| birthday_day_id             | references | null: false, foreign_key: true |
-| product_id                  | references | null: false, foreign_key: true |
-| shopping_id                 | references | null: false, foreign_key: true |
+| Column                      | Type   | Options     |
+|-----------------------------|--------|-------------|
+| nickname                    | string | null: false |
+| e_mail                      | string | null: false |
+| password                    | string | null: false |
+| password_confirmation       | string | null: false |
+| full_width_family_name      | string | null: false |
+| full_width_name             | string | null: false |
+| full_width_kana_family_name | string | null: false |
+| full_width_kana_name        | string | null: false |
+| birthday                    | date   | null: false |
 
 ### Association
 has_many :products
 has_many :shoppings
-extend ActiveHash::Associations::ActiveRecordExtensions
-belong_to_active_hash :birthday_years
-belong_to_active_hash :birthday_months
-belong_to_active_hash :birthday_days
-
-
-## birthday_yearsテーブル
-
-| Column        | Type    | Options     |
-|---------------|---------|-------------|
-| birthday_year | integer | null: false |
-
-
-## birthday_monthsテーブル
-
-| Column         | Type    | Options     |
-|----------------|---------|-------------|
-| birthday_month | integer | null: false |
-
-
-## birthday_daysテーブル
-
-| Column       | Type    | Options     |
-|--------------|---------|-------------|
-| birthday_day | integer | null: false |
 
 
 ## productsテーブル
 
 | Column           | Type       | Options                        |
 |------------------|------------|--------------------------------|
-| image            | string     | null: false                    |
 | product          | string     | null: false                    |
 | explanation      | text       | null: false                    |
-| category_id      | references | null: false, foreign_key: true |
-| status_id        | references | null: false, foreign_key: true |
-| delivery_fee_id  | references | null: false, foreign_key: true |
-| shipping_day_id  | references | null: false, foreign_key: true |
+| category_id      | integer    | null: false, foreign_key: true |
+| status_id        | integer    | null: false, foreign_key: true |
+| delivery_fee_id  | integer    | null: false, foreign_key: true |
+| shipping_day_id  | integer    | null: false, foreign_key: true |
 | selling_price    | integer    | null: false                    |
-| sales_commission | integer    | null: false                    |
-| sales_profit     | integer    | null: false, foreign_key: true |
-| user_id          | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
-belongs_to :users
-has_one :shoppings
+belongs_to :user
+has_one :shopping
 extend ActiveHash::Associations::ActiveRecordExtensions
 belong_to_active_hash :categories
 belong_to_active_hash :statuses
