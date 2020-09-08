@@ -59,3 +59,10 @@ belongs_to :user
 belongs_to :product
 extend ActiveHash::Associations::ActiveRecordExtensions
 belong_to_active_hash :prefectures
+
+
+## prefecturesテーブル
+
+| Column     | Type   | Options      |
+|------------|--------|--------------|
+| prefecture | string | null: false  |
