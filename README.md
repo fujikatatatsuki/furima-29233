@@ -19,16 +19,17 @@ has_many :shoppings
 
 ## productsテーブル
 
-| Column           | Type       | Options                        |
-|------------------|------------|--------------------------------|
-| product          | string     | null: false                    |
-| explanation      | text       | null: false                    |
-| category_id      | integer    | null: false, foreign_key: true |
-| status_id        | integer    | null: false, foreign_key: true |
-| delivery_fee_id  | integer    | null: false, foreign_key: true |
-| shipping_day_id  | integer    | null: false, foreign_key: true |
-| selling_price    | integer    | null: false                    |
-| user             | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+|--------------------|------------|--------------------------------|
+| name               | string     | null: false                    |
+| explanation        | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| status_id          | integer    | null: false                    |
+| delivery_fee_id    | integer    | null: false                    |
+| shipping_region_id | integer    | null: false                    |
+| shipping_day_id    | integer    | null: false                    |
+| selling_price      | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user
@@ -40,60 +41,21 @@ belong_to_active_hash :delivery_fees
 belong_to_active_hash :shipping_days
 
 
-## categoriesテーブル
-
-| Column   | Type    | Options     |
-|----------|---------|-------------|
-| category | string  | null: false |
-
-
-## statusesテーブル
-
-| Column | Type    | Options     |
-|--------|---------|-------------|
-| status | string  | null: false |
-
-
-## delivery_feesテーブル
-
-| Column       | Type    | Options     |
-|--------------|---------|-------------|
-| delivery_fee | string  | null: false |
-
-
-## shipping_daysテーブル
-
-| Column       | Type    | Options     |
-|--------------|---------|-------------|
-| shipping_day | string  | null: false |
-
-
 ## shoppingsテーブル
 
-| Column                | Type       | Options                        |
-|-----------------------|------------|--------------------------------|
-| card_number           | integer    | null: false                    |
-| expiration_date_month | integer    | null: false                    |
-| expiration_date_year  | integer    | null: false                    |
-| security_code         | integer    | null: false                    |
-| postal_code           | string     | null: false                    |
-| prefecture-id         | references | null: false, foreign_key: true |
-| city                  | string     | null: false                    |
-| address               | string     | null: false                    |
-| building_name         | string     | null: true                     |
-| phone_number          | string     | null: false                    |
-| user_id               | references | null: false, foreign_key: true |
-| product_id            | references | null: false, foreign_key: true |
+| Column        | Type       | Options                        |
+|---------------|------------|--------------------------------|
+| postal_code   | string     | null: false                    |
+| prefecture-id | integer    | null: false                    |
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| building_name | string     | null: true                     |
+| phone_number  | string     | null: false                    |
+| user          | references | null: false, foreign_key: true |
+| product       | references | null: false, foreign_key: true |
 
 ### Association
-belongs_to :users
-belongs_to :products
+belongs_to :user
+belongs_to :product
 extend ActiveHash::Associations::ActiveRecordExtensions
 belong_to_active_hash :prefectures
-
-
-## prefecturesテーブル
-
-| Column      | Type    | Options     |
-|-------------|---------|-------------|
-| prefectures | string  | null: false |
