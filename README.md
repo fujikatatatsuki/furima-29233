@@ -1,16 +1,16 @@
 ## usersテーブル
 
-| Column                      | Type   | Options     |
-|-----------------------------|--------|-------------|
-| nickname                    | string | null: false |
-| e_mail                      | string | null: false |
-| password                    | string | null: false |
-| password_confirmation       | string | null: false |
-| full_width_family_name      | string | null: false |
-| full_width_name             | string | null: false |
-| full_width_kana_family_name | string | null: false |
-| full_width_kana_name        | string | null: false |
-| birthday                    | date   | null: false |
+| Column                          | Type   | Options     |
+|---------------------------------|--------|-------------|
+| nickname                        | string | null: false |
+| e_mail                          | string | null: false |
+| encrypted_password              | string | null: false |
+| encrypted_password_confirmation | string | null: false |
+| full_width_family_name          | string | null: false |
+| full_width_name                 | string | null: false |
+| full_width_kana_family_name     | string | null: false |
+| full_width_kana_name            | string | null: false |
+| birthday                        | date   | null: false |
 
 ### Association
 has_many :products
