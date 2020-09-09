@@ -48,6 +48,7 @@ belong_to_active_hash :shipping_days
 | Column        | Type       | Options                        |
 |---------------|------------|--------------------------------|
 | product       | references | null: false, foreign_key: true |
+| user          | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user
