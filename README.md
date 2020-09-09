@@ -48,11 +48,10 @@ belong_to_active_hash :shipping_days
 | Column        | Type       | Options                        |
 |---------------|------------|--------------------------------|
 | product       | references | null: false, foreign_key: true |
-| address       | references | null: false, foreign_key: true |
 
 ### Association
+belongs_to :user
 belongs_to :product
-belongs_to :address
 has_one :address
 
 
@@ -60,7 +59,7 @@ has_one :address
 
 | Column        | Type       | Options                        |
 |---------------|------------|--------------------------------|
-| prefecture-id | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    |
 | postal_code   | string     | null: false                    |
 | city          | string     | null: false                    |
 | block_number  | string     | null: false                    |
