@@ -34,7 +34,6 @@ has_many :shoppings
 ### Association
 belongs_to :user
 has_one :shopping
-has_one :address
 extend ActiveHash::Associations::ActiveRecordExtensions
 belong_to_active_hash :categories
 belong_to_active_hash :statuses
