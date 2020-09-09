@@ -15,7 +15,6 @@
 ### Association
 has_many :products
 has_many :shoppings
-has_many :addresses
 
 
 ## productsテーブル
@@ -35,7 +34,7 @@ has_many :addresses
 ### Association
 belongs_to :user
 has_one :shopping
-has_one :shopping
+has_one :address
 extend ActiveHash::Associations::ActiveRecordExtensions
 belong_to_active_hash :categories
 belong_to_active_hash :statuses
@@ -48,7 +47,6 @@ belong_to_active_hash :shipping_days
 
 | Column        | Type       | Options                        |
 |---------------|------------|--------------------------------|
-| prefecture-id | integer    | null: false                    |
 | product       | references | null: false, foreign_key: true |
 | address       | references | null: false, foreign_key: true |
 
@@ -56,21 +54,21 @@ belong_to_active_hash :shipping_days
 belongs_to :product
 belongs_to :address
 has_one :address
-extend ActiveHash::Associations::ActiveRecordExtensions
-belong_to_active_hash :prefectures
 
 
 ## addressesテーブル
 
-| Column        | Type   | Options     |
-|---------------|--------|-------------|
-| postal_code   | string | null: false |
-| city          | string | null: false |
-| block_number  | string | null: false |
-| building_name | string | null: true  |
-| phone_number  | string | null: false |
+| Column        | Type       | Options                        |
+|---------------|------------|--------------------------------|
+| prefecture-id | integer    | null: false                    |
+| postal_code   | string     | null: false                    |
+| city          | string     | null: false                    |
+| block_number  | string     | null: false                    |
+| building_name | string     |                                |
+| phone_number  | string     | null: false                    |
+| shopping      | references | null: false, foreign_key: true |
 
 ### Association
-belongs_to :user
-belongs_to :product
 belongs_to :shopping
+extend ActiveHash::Associations::ActiveRecordExtensions
+belong_to_active_hash :prefectures
