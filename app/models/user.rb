@@ -36,5 +36,5 @@ class User < ApplicationRecord
   validates :full_width_kana_name, presence: true, format: {with: VALID_KANA_NAME_REGEX }
     
   # - 生年月日が必須であること
-  validates :date, presence: true
+  validates :birthday, presence: true
 end
