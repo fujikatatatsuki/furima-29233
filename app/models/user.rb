@@ -7,17 +7,15 @@ class User < ApplicationRecord
   # - ニックネームが必須であること
   validates :nickname, presence: true
 
-  # - メールアドレスが必須であること
-  # - メールアドレスが一意性であること
-  # - メールアドレスは@を含む必要があること
-  # VALID_EMAIL_REGEX = /@/.freeze
-  # validates :email, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
+  # - メールアドレスが必須であること デフォルト
+  # - メールアドレスが一意性であること デフォルト
+  # - メールアドレスは@を含む必要があること デフォルト
 
-  # - パスワードが必須であること
+  # - パスワードが必須であること デフォルト
   # - パスワードは6文字以上であること
   # - パスワードは半角英数字混合であること
-  # - パスワードは確認用を含めて2回入力すること
-  VALID_PASSWORD_REGEX = /[a-z\d{6,}]/i.freeze
+  # - パスワードは確認用を含めて2回入力すること デフォルト
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i.freeze
   validates :password, format: { with: VALID_PASSWORD_REGEX }
 
   # - ユーザー本名が、名字と名前がそれぞれ必須であること
