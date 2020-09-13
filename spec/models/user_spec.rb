@@ -17,8 +17,6 @@ describe User do
         @user.email
         expect(@user).to be_valid
       end
-      # it "メールアドレスが一意性であること" do
-      # end
       it "パスワードが入力されており、６文字以上で半角英数字混合であれば登録できる" do
         @user.password
         @user.encrypted_password
@@ -47,20 +45,46 @@ describe User do
 
     context '新規登録が失敗する場合' do
       it "ニックネームが空だと登録できない" do
+        @user.nickname = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
       it "メールアドレスが空だと登録できない" do
+        @user.email = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email can't be blank")
       end
       it "メールアドレスが重複（一意性）していると登録できない" do
+        @user.save
+        another_user = FactoryBot.build(:user)
+        another_user.email = @user.email
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
       it "メールアドレスに＠を含まないと登録できない" do
+        @user.email = "123456gmail.com"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
       it "パスワードが空だと登録できない" do
+        @user.password = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password can't be blank")
       end
-      it "パスワードは６文字以下であると登録できない" do
+      it "パスワードは５文字以下であると登録できない" do
+        @user.password = "00000"
+        @user.password_confirmation = "00000"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
       it "パスワードが半角英数字混合でないと登録できない" do
       end
-      it "パスワードは確認用を含めて１回しか入力していないと登録できない" do
+      it "パスワードが入力されていても、確認用パスワードが入力されていなければ登録できない" do
+        @user.password
+        @user.encrypted_password = "12345w"
+        @user.valid?
+        binding.pry
+        expect(@user.errors.full_messages).to include("Encrypted Password doesn't match Password")
       end
       it "ユーザー本名の名前が入力されていても、名字が入力されていなければ登録できない" do
       end
@@ -79,6 +103,9 @@ describe User do
       it "ユーザー本名のフリガナは全角（英語）で入力されていれば登録できない" do
       end
       it "生年月日が空だと登録できない" do
+        @user.birthday = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
     end
   end

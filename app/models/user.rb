@@ -30,7 +30,7 @@ class User < ApplicationRecord
   VALID_KANA_NAME_REGEX = /[ァ-ン]/.freeze
   validates :full_width_kana_family_name, presence: true, format: {with: VALID_KANA_NAME_REGEX }
   validates :full_width_kana_name, presence: true, format: {with: VALID_KANA_NAME_REGEX }
-    
+
   # - 生年月日が必須であること
   validates :birthday, presence: true
 end
