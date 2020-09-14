@@ -3,7 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_many :items
 
+  # - 共通で入力必須のバリテーションを設定
   with_options presence: true do
 
     # - ニックネームが必須であること
