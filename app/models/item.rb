@@ -3,11 +3,11 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belong_to_active_hash :category
-  belong_to_active_hash :status
-  belong_to_active_hash :delivery_fee
-  belong_to_active_hash :shipping_region
-  belong_to_active_hash :shipping_day
+  belongs_to_active_hash :category
+  belongs_to_active_hash :status
+  belongs_to_active_hash :delivery_fee
+  belongs_to_active_hash :shipping_region
+  belongs_to_active_hash :shipping_day
 
   # 共通で、空の投稿を保存できないようにする
   with_options presence: true do
