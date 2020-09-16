@@ -29,6 +29,7 @@ class Item < ApplicationRecord
     validates :shipping_region_id
     validates :shipping_day_id
   end
+
   # 販売価格の範囲が、¥300以上~¥9,999,999未満であること
   validates :selling_price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
 
