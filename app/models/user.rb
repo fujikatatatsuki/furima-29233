@@ -7,7 +7,6 @@ class User < ApplicationRecord
 
   # - 共通で入力必須のバリテーションを設定
   with_options presence: true do
-
     # - ニックネームが必須であること
     validates :nickname
 
@@ -16,7 +15,7 @@ class User < ApplicationRecord
     VALID_NAME_REGEX = /[ぁ-んァ-ン一-龥]/.freeze
     validates :full_width_family_name, format: { with: VALID_NAME_REGEX }
 
-    validates :full_width_name, format: {with: VALID_NAME_REGEX }
+    validates :full_width_name, format: { with: VALID_NAME_REGEX }
 
     # - ユーザー本名のフリガナが、名字と名前でそれぞれ必須であること
     # - ユーザー本名のフリガナは全角（カタカナ）で入力させること

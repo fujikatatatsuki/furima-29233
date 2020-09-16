@@ -92,18 +92,18 @@ describe Item do
       it '販売価格(selling_price)についての情報が入力がされていなければ登録できない' do
         @item.selling_price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Selling price can't be blank", "Selling price is not a number", "Selling price is invalid")
+        expect(@item.errors.full_messages).to include("Selling price can't be blank", 'Selling price is not a number', 'Selling price is invalid')
       end
       it '販売価格(selling_price)の範囲が、¥300以下であれば登録できない' do
         @item.selling_price = 100
         @item.valid?
         expect(@item.errors.full_messages).to include('Selling price must be greater than or equal to 300')
-    end
+      end
       it '販売価格(selling_price)の範囲が、¥9,999,999以上であれば登録できない' do
-        @item.selling_price = 1,000,000,000
+        @item.selling_price = 1, 0o00, 0o00, 0o00
         @item.valid?
-        expect(@item.errors.full_messages).to include("Selling price can't be blank", "Selling price is not a number", "Selling price is invalid")
-    end
+        expect(@item.errors.full_messages).to include("Selling price can't be blank", 'Selling price is not a number', 'Selling price is invalid')
+      end
       it '販売価格(selling_price)は半角数字以外で入力されていれば登録できない' do
         @item.selling_price = 'あああ'
         @item.valid?
