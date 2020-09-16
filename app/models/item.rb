@@ -14,11 +14,6 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :selling_price
-    # validates :category_id
-    # validates :status_id
-    # validates :delivery_fee_id
-    # validates :shipping_region_id
-    # validates :shipping_day_id
   end
 
   # 共通で、選択が「---」の時は保存できないようにする
