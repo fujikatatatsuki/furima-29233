@@ -23,30 +23,30 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
-      it 'カテゴリー(category_id)の情報が入力がされていなければ登録できない' do
-        @item.category_id = nil
+      it 'カテゴリー(category_id)の情報は、1が入力されていたら登録できない' do
+        @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Category is not a number')
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
-      it '商品の状態(status_id)についての情報が入力がされていなければ登録できない' do
-        @item.status_id = nil
+      it '商品の状態(status_id)についての情報は、1が入力されていたら登録できない' do
+        @item.status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Status is not a number')
+        expect(@item.errors.full_messages).to include('Status must be other than 1')
       end
-      it '配送料の負担(delivery_fee_id)についての情報が入力がされていなければ登録できない' do
-        @item.delivery_fee_id = nil
+      it '配送料の負担(delivery_fee_id)についての情報は、1が入力されていたら登録できない' do
+        @item.delivery_fee_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Delivery fee is not a number')
+        expect(@item.errors.full_messages).to include('Delivery fee must be other than 1')
       end
-      it '発送元の地域(shipping_region_id)についての情報が入力がされていなければ登録できない' do
-        @item.shipping_region_id = nil
+      it '発送元の地域(shipping_region_id)についての情報は、1が入力されていたら登録できない' do
+        @item.shipping_region_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Shipping region is not a number')
+        expect(@item.errors.full_messages).to include('Shipping region must be other than 1')
       end
-      it '発送までの日数(shipping_day_id)についての情報が入力がされていなければ登録できない' do
-        @item.shipping_day_id = nil
+      it '発送までの日数(shipping_day_id)についての情報は、1が入力されていたら登録できない' do
+        @item.shipping_day_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include('Shipping day is not a number')
+        expect(@item.errors.full_messages).to include('Shipping day must be other than 1')
       end
       it '販売価格(selling_price)についての情報が入力がされていなければ登録できない' do
         @item.selling_price = ''
