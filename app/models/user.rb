@@ -20,7 +20,7 @@ class User < ApplicationRecord
     # - ユーザー本名のフリガナが、名字と名前でそれぞれ必須であること
     # - ユーザー本名のフリガナは全角（カタカナ）で入力させること
     VALID_KANA_NAME_REGEX = /[ァ-ン]/.freeze
-    validates :full_width_kana_family_name, format: {with: VALID_KANA_NAME_REGEX }
+    validates :full_width_kana_family_name, format: { with: VALID_KANA_NAME_REGEX }
     validates :full_width_kana_name, format: {with: VALID_KANA_NAME_REGEX }
 
     # - 生年月日が必須であること
