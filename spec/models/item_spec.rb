@@ -23,6 +23,11 @@ describe Item do
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
+      it '商品の説明(explanation)が入力されていなければ登録できない' do
+        @item.name = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Explanation can't be blank")
+      end
       it 'カテゴリー(category_id)の情報は、1が入力されていたら登録できない' do
         @item.category_id = 1
         @item.valid?
