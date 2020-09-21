@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :items
+  has_many :orders
 
   # - 共通で入力必須のバリテーションを設定
   with_options presence: true do
