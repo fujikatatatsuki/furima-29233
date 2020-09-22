@@ -40,10 +40,10 @@ ActiveRecord::Schema.define(version: 2020_09_20_100448) do
     t.string "block_number", null: false
     t.string "building_name", null: false
     t.string "phone_number", null: false
-    t.bigint "shopping_id"
+    t.bigint "order_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["shopping_id"], name: "index_addresses_on_shopping_id"
+    t.index ["order_id"], name: "index_addresses_on_order_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -62,25 +62,12 @@ ActiveRecord::Schema.define(version: 2020_09_20_100448) do
   end
 
   create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "shipping_region_id", null: false
-    t.string "postal_code", null: false
-    t.string "city", null: false
-    t.string "block_number", null: false
-    t.string "building_name", null: false
-    t.string "phone_number", null: false
-    t.bigint "shopping_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["shopping_id"], name: "index_orders_on_shopping_id"
-  end
-
-  create_table "shoppings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id"], name: "index_shoppings_on_item_id"
-    t.index ["user_id"], name: "index_shoppings_on_user_id"
+    t.index ["item_id"], name: "index_orders_on_item_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -102,9 +89,8 @@ ActiveRecord::Schema.define(version: 2020_09_20_100448) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "addresses", "shoppings"
+  add_foreign_key "addresses", "orders"
   add_foreign_key "items", "users"
-  add_foreign_key "orders", "shoppings"
-  add_foreign_key "shoppings", "items"
-  add_foreign_key "shoppings", "users"
+  add_foreign_key "orders", "items"
+  add_foreign_key "orders", "users"
 end
