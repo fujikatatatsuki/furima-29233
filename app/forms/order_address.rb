@@ -1,15 +1,14 @@
 class OrderAddress
   include ActiveModel::Model
   attr_accessor :shipping_region_id, :postal_code, :city, :block_number, :building_name, :phone_number, :token, :item_id, :user_id
-  # addressのバリテーション
     # 共通で、空の投稿を保存できないようにする
     with_options presence: true do
+      validates :token
       # 郵便番号には-が必要
       validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'を入力してください' }
 
       validates :city
       validates :block_number
-
       # 電話番号には-が不要で、11桁以内であること
       validates :phone_number, format: { with: /\d{,11}/ }
     end
