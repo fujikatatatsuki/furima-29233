@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @order = OrderAddress.new
     @item = Item.find(params[:item_id])
@@ -30,5 +32,4 @@ class OrdersController < ApplicationController
       currency:'jpy'                 # 通貨の種類(日本円)
     )
   end
-
 end
