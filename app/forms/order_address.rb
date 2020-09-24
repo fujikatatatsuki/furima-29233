@@ -10,7 +10,7 @@ class OrderAddress
       validates :city
       validates :block_number
       # 電話番号には-が不要で、11桁以内であること
-      validates :phone_number, format: { with: /\d{,11}/ }
+      validates :phone_number, format: { with: /\A\d{11}\z/ }
     end
 
     # 共通で、選択が「---」の時は保存できないようにする
