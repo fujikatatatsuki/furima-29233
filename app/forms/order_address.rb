@@ -5,7 +5,7 @@ class OrderAddress
     with_options presence: true do
       validates :token
       # 郵便番号には-が必要
-      validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'を入力してください' }
+      validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'input correctly' }
 
       validates :city
       validates :block_number
