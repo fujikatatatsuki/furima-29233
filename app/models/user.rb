@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :items
+  has_many :orders
 
   # - 共通で入力必須のバリテーションを設定
   with_options presence: true do
@@ -14,7 +15,6 @@ class User < ApplicationRecord
     # - ユーザー本名は全角（漢字・ひらがな・カタカナ）で入力させること
     VALID_NAME_REGEX = /[ぁ-んァ-ン一-龥]/.freeze
     validates :full_width_family_name, format: { with: VALID_NAME_REGEX }
-
     validates :full_width_name, format: { with: VALID_NAME_REGEX }
 
     # - ユーザー本名のフリガナが、名字と名前でそれぞれ必須であること
