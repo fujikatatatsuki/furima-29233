@@ -1,23 +1,22 @@
 ## usersテーブル
 
-| Column                          | Type   | Options     |
-|---------------------------------|--------|-------------|
-| nickname                        | string | null: false |
-| e_mail                          | string | null: false |
-| encrypted_password              | string | null: false |
-| encrypted_password_confirmation | string | null: false |
-| full_width_family_name          | string | null: false |
-| full_width_name                 | string | null: false |
-| full_width_kana_family_name     | string | null: false |
-| full_width_kana_name            | string | null: false |
-| birthday                        | date   | null: false |
+| Column                      | Type   | Options     |
+|-----------------------------|--------|-------------|
+| nickname                    | string | null: false |
+| email                       | string | null: false |
+| encrypted_password          | string | null: false |
+| full_width_family_name      | string | null: false |
+| full_width_name             | string | null: false |
+| full_width_kana_family_name | string | null: false |
+| full_width_kana_name        | string | null: false |
+| birthday                    | date   | null: false |
 
 ### Association
-has_many :products
-has_many :shoppings
+has_many :items
+has_many :orders
 
 
-## productsテーブル
+## itemsテーブル
 
 | Column             | Type       | Options                        |
 |--------------------|------------|--------------------------------|
@@ -33,7 +32,7 @@ has_many :shoppings
 
 ### Association
 belongs_to :user
-has_one :shopping
+has_one :order
 extend ActiveHash::Associations::ActiveRecordExtensions
 belong_to_active_hash :categories
 belong_to_active_hash :statuses
@@ -42,32 +41,32 @@ belong_to_active_hash :shipping_regions
 belong_to_active_hash :shipping_days
 
 
-## shoppingsテーブル
+## ordersテーブル
 
-| Column        | Type       | Options                        |
-|---------------|------------|--------------------------------|
-| product       | references | null: false, foreign_key: true |
-| user          | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+|--------|------------|--------------------------------|
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user
-belongs_to :product
+belongs_to :item
 has_one :address
 
 
 ## addressesテーブル
 
-| Column        | Type       | Options                        |
-|---------------|------------|--------------------------------|
-| prefecture_id | integer    | null: false                    |
-| postal_code   | string     | null: false                    |
-| city          | string     | null: false                    |
-| block_number  | string     | null: false                    |
-| building_name | string     |                                |
-| phone_number  | string     | null: false                    |
-| shopping      | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+|--------------------|------------|--------------------------------|
+| postal_code        | string     | null: false                    |
+| shipping_region_id | integer    | null: false                    |
+| city               | string     | null: false                    |
+| block_number       | string     | null: false                    |
+| building_name      | string     |                                |
+| phone_number       | string     | null: false                    |
+| shopping           | references | null: false, foreign_key: true |
 
 ### Association
-belongs_to :shopping
+belongs_to :order
 extend ActiveHash::Associations::ActiveRecordExtensions
-belong_to_active_hash :prefectures
+belong_to_active_hash :shipping_regions
