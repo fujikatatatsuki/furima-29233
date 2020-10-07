@@ -34,11 +34,11 @@ has_many :orders
 belongs_to :user
 has_one :order
 extend ActiveHash::Associations::ActiveRecordExtensions
-belong_to_active_hash :categories
-belong_to_active_hash :statuses
-belong_to_active_hash :delivery_fees
-belong_to_active_hash :shipping_regions
-belong_to_active_hash :shipping_days
+belongs_to_active_hash :categories
+belongs_to_active_hash :statuses
+belongs_to_active_hash :delivery_fees
+belongs_to_active_hash :shipping_regions
+belongs_to_active_hash :shipping_days
 
 
 ## ordersテーブル
@@ -69,4 +69,4 @@ has_one :address
 ### Association
 belongs_to :order
 extend ActiveHash::Associations::ActiveRecordExtensions
-belong_to_active_hash :shipping_regions
+belongs_to_active_hash :shipping_regions
